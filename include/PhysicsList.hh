@@ -2,13 +2,21 @@
 #define PHYSICSLIST_HH_
 
 #include "globals.hh"
-#include "G4VUserPhysicsList.hh"
+#include "G4VModularPhysicsList.hh"
 
-class PhysicsList : public G4VUserPhysicsList
+/// Modular physics list
+///
+/// It includes the folowing physics builders
+/// - G4DecayPhysics
+/// - G4RadioactiveDecayPhysics
+/// - G4EmStandardPhysics
+class PhysicsList : public G4VModularPhysicsList
 {
 public:
 	PhysicsList();
 	virtual ~PhysicsList();
+
+	virtual void SetCuts();
 
 private:
 	// Construct particle and physics process

@@ -11,9 +11,10 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
 {
 	fParticleGun = new G4ParticleGun();
 	fParticleGun->SetNumberOfParticles(1);
-	fParticleGun->SetParticleDefinition(FindParticle("gamma"));
+	fParticleGun->SetParticleDefinition(FindParticle("e-"));
 	fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0.,0.,1.));
-	fParticleGun->SetParticleEnergy(6.*MeV);
+	fParticleGun->SetParticlePosition(G4ThreeVector(0, 0, -1*mm));
+	fParticleGun->SetParticleEnergy(2.5*MeV);
 }
 
 PrimaryGeneratorAction::~PrimaryGeneratorAction()
@@ -23,7 +24,6 @@ PrimaryGeneratorAction::~PrimaryGeneratorAction()
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* event)
 {
-	fParticleGun->SetParticlePosition(G4ThreeVector(0, 0, -10));
 	fParticleGun->GeneratePrimaryVertex(event);
 }
 
