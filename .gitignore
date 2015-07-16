@@ -1,0 +1,13 @@
+.*
+!.gitignore
+
+nohup*
+
+*.root
+*.zip
+*.heprep
+*.properties
+*.log
+
+*.pyc
+
