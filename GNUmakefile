@@ -15,8 +15,9 @@ endif
 all: lib bin
 
 include $(G4INSTALL)/config/architecture.gmk
-
 include $(G4INSTALL)/config/binmake.gmk
+
+CPPFLAGS += -std=c++11
 
 visclean:
 	rm -f g4*.prim g4*.eps g4*.wrl

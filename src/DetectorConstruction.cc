@@ -89,7 +89,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 	return physWorld;
 }
 
-void DetectorConstruction::ConstructSD()
+void DetectorConstruction::ConstructSDandField()
 {
     G4SDManager::GetSDMpointer()->SetVerboseLevel(1);
 
@@ -99,7 +99,6 @@ void DetectorConstruction::ConstructSD()
     G4VPrimitiveScorer* primitiv1 = new G4PSEnergyDeposit("Edep");
     dd->RegisterPrimitive(primitiv1);
     SetSensitiveDetector("DDLV",dd);
-
 }
 
 

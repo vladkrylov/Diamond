@@ -1,6 +1,9 @@
 #include "g4csv.hh"
+#include "G4SDManager.hh"
 
+#include "G4RunManager.hh"
 #include "EventAction.hh"
+#include "G4Event.hh"
 
 EventAction::EventAction()
 : G4UserEventAction(),

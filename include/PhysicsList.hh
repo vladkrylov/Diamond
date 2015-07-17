@@ -20,8 +20,8 @@ public:
 
 private:
 	// Construct particle and physics process
-	void ConstructParticle();
-	void ConstructProcess();
+//	void ConstructParticle();
+//	void ConstructProcess();
 
 	void ConstructEM();
 	void ConstructDecay();

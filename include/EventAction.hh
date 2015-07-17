@@ -1,13 +1,7 @@
-/*
- * EventAction.hh
- *
- *  Created on: Jul 16, 2015
- *      Author: vlad
- */
-
 #ifndef EVENTACTION_HH_
 #define EVENTACTION_HH_
 
+#include "G4THitsMap.hh"
 #include "G4UserEventAction.hh"
 
 class EventAction : public G4UserEventAction
