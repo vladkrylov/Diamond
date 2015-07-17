@@ -19,9 +19,13 @@ public:
 	virtual void GeneratePrimaries(G4Event*);
 
 private:
+	double Emean;
+	double sigma;
+
 	G4ParticleGun* fParticleGun;
 	std::default_random_engine generator;
-	std::poisson_distribution<int>* distribution;
+	std::poisson_distribution<int>* poisson;
+	std::normal_distribution<double>* gauss;
 
 	G4ParticleDefinition* FindParticle(G4String particleName);
 };
