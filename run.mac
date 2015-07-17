@@ -1,0 +1,6 @@
+# set messenger parameters
+/run/verbose 1
+/event/verbose 0
+/tracking/verbose 0
+
+/run/beamOn 100000

@@ -18,6 +18,7 @@ public:
 private:
 	G4bool  fCheckOverlaps;
 	void DefineMaterials();
+	void ConstructSDandField();
 };
 
 #endif /* DETECTORCONSTRUCTION_H_ */

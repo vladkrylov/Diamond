@@ -31,4 +31,4 @@
 #/gun/particle e-
 #/gun/energy 4438 keV
 
-/run/beamOn 5
+/run/beamOn 50

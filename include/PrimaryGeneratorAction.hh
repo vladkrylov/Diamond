@@ -1,6 +1,8 @@
 #ifndef PRIMARYGENERATORACTION_HH_
 #define PRIMARYGENERATORACTION_HH_
 
+#include <random>
+
 #include "globals.hh"
 #include "G4VUserPrimaryGeneratorAction.hh"
 
@@ -18,6 +20,8 @@ public:
 
 private:
 	G4ParticleGun* fParticleGun;
+	std::default_random_engine generator;
+	std::poisson_distribution<int>* distribution;
 
 	G4ParticleDefinition* FindParticle(G4String particleName);
 };
