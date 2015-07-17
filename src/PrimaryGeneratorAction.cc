@@ -12,11 +12,11 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
 	distribution = new std::poisson_distribution<int>(4.3);
 
 	fParticleGun = new G4ParticleGun();
-	fParticleGun->SetNumberOfParticles(1);
+	fParticleGun->SetNumberOfParticles(8);
 	fParticleGun->SetParticleDefinition(FindParticle("e-"));
 	fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0.,0.,1.));
 	fParticleGun->SetParticlePosition(G4ThreeVector(0, 0, -1*mm));
-	fParticleGun->SetParticleEnergy(16.*MeV);
+	fParticleGun->SetParticleEnergy(2.5*MeV);
 }
 
 PrimaryGeneratorAction::~PrimaryGeneratorAction()
@@ -26,7 +26,7 @@ PrimaryGeneratorAction::~PrimaryGeneratorAction()
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* event)
 {
-	fParticleGun->SetNumberOfParticles( (*distribution)(generator) );
+//	fParticleGun->SetNumberOfParticles( (*distribution)(generator) );
 	fParticleGun->GeneratePrimaryVertex(event);
 }
 

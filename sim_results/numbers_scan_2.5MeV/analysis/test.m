@@ -1,13 +1,13 @@
-function test_poisson
-    N_bins = 1000;
+function test
+    N_bins = 200;
     
     files = {
-        '../lambda=8.csv'...
-        ,'../lambda=5.csv'...
-        ,'../lambda=4.5.csv'...
-        ,'../expdata_Run16_Beamtime5.csv'...
+        '../e1.csv'...
+        ,'../e2.csv'...
+        ,'../e3.csv'...
+        ,'../e4.csv'...
+        ,'../e5.csv'...
         };
-    
     
     L = length(files);
     x = zeros(N_bins, L);
@@ -17,8 +17,8 @@ function test_poisson
     for i=1:L
         data = load(files{i});
         [counts, centers] = hist(data, N_bins);
-        x(:,i) = MeV2Volts(centers.');
-        y(:,i) = counts.';
+        x(:,i) = centers.';
+        y(:,i) = smooth(counts.', 1);
         
         [pathstr,name,ext] = fileparts(files{i});
         legendInfo{i} = name;
@@ -27,8 +27,4 @@ function test_poisson
     figure(1)
     stairs(x, y)
     legend(legendInfo)
-end
-
-function y = MeV2Volts(x)
-    y = x / 0.226 * 0.012;
 end
