@@ -9,7 +9,7 @@ function [x, y] = g4poisson(lambda, n_events, n_bins)
         n_current_events = floor(n_events * coefs(i));
         i_end = counter + n_current_events;
         
-        data(counter:i_end-1) = g4load(i, n_current_events);
+        data(counter:i_end-1) = MeV2Volts(g4load(i, n_current_events));
         
         counter = i_end;
     end
@@ -21,7 +21,7 @@ end
 function deposit_energies = g4load(n_electrons, n_events)
     switch n_electrons
         case 0
-            data = normrnd(0, 1e-3*18.7, n_events, 1);
+            data = normrnd(0, 2e-3*18.7, n_events, 1);
         case 1
             data = load('../../numbers_scan_2.5MeV/e1.csv');
         case 2

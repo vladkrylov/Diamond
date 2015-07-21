@@ -16,27 +16,28 @@ function test_poisson
         
         [counts, centers] = hist(data, N_bins);
         x(:,i) = centers.' - 0.003;
-
-        y(:,i) = smooth(counts.', 5);
+        y(:,i) = smooth(counts.', 10);
         
         [pathstr, name, ext] = fileparts(files{i});
         legendInfo{i} = name;
     end
-    
-    [x_sim, y_sim] = g4poisson(4.2, 1e4, N_bins);
-    legendInfo{end+1} = 'Geant4 simulation for \lambda = 4.2';
-    
     figure(1)
     stairs(x, y)
+    
+    x_centers = 18.7 * [-0.01:1e-4:0.35];
+    
     hold on
-        stairs(MeV2Volts(x_sim), smooth(y_sim, 5), 'r')
+        legendInfo = sim_plot(4.2, 1e4, x_centers, 10, 'r', legendInfo);
+        legendInfo = sim_plot(2.9, 1e4, x_centers, 10, 'g', legendInfo);
     hold off
     legend(legendInfo)
     xlabel('Amplitude, V')
     ylabel('Counts')
 end
 
-function y = MeV2Volts(x)
-%     k = 255 / 2.88 / 4
-    y = x / 0.226 * 0.012;
+function legendInfo = sim_plot(lambda, n_events, n_bins, n_smooth, color, legend)
+    [x_sim, y_sim] = g4poisson(lambda, n_events, n_bins);
+    legendInfo = legend;
+    legendInfo{end+1} = ['Geant4 simulation for \lambda = ' num2str(lambda)];
+    stairs(MeV2Volts(x_sim), smooth(y_sim, n_smooth), color)
 end
