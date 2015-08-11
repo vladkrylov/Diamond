@@ -11,3 +11,9 @@ nohup*
 
 *.pyc
 
+*.out
+*.csv
+
+Debug/
+Release/
+oprofile_data/

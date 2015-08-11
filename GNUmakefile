@@ -1,8 +1,3 @@
-# $Id: GNUmakefile 68058 2013-03-13 14:47:43Z gcosmo $
-# --------------------------------------------------------------
-# GNUmakefile for examples module.  Gabriele Cosmo, 06/04/98.
-# --------------------------------------------------------------
-
 name := diamond
 G4TARGET := $(name)
 G4EXLIB := true
@@ -16,6 +11,10 @@ all: lib bin
 
 include $(G4INSTALL)/config/architecture.gmk
 include $(G4INSTALL)/config/binmake.gmk
+
+EXTRALIBS = $(shell root-config --glibs)
+CPPFLAGS += -I$(shell root-config --incdir)
+LDLIBS   += $(shell root-config --libs)
 
 CPPFLAGS += -std=c++11
 
