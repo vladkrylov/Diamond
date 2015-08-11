@@ -12,7 +12,6 @@ nohup*
 *.pyc
 
 *.out
-*.csv
 
 Debug/
 Release/
