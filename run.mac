@@ -1,8 +1,9 @@
-/diamond/source/lambda 4.5
-/run/initialize
-
 /run/verbose 1
 /event/verbose 0
 /tracking/verbose 0
 
-/run/beamOn 100000
+/run/initialize
+
+/diamond/source/lambda 7.0
+
+/run/beamOn 10
