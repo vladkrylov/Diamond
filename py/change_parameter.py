@@ -1,14 +1,22 @@
-#!/usr/bin/python
 import os
 import sys
 import re
 import inspect
 from subprocess import call
 
+requirements = """
+This script needs 2 command line arguments:
+1) name of Messenger command
+2) new value
+
+Example using this script:
+python py/change_parameter.py /diamond/source/lambda 4.3 
+"""
+
 # get location of this file
 current_path = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 
-mac_file_name = os.path.join(current_path, "/../run.mac")
+mac_file_name = os.path.join(current_path, "../run.mac")
 mac_temp_file_name = "%s.temp" % mac_file_name
 
 # copy file before editing
