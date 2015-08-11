@@ -39,7 +39,6 @@ PrimaryGeneratorAction::~PrimaryGeneratorAction()
 {
 	delete fParticleGun;
 	delete poisson;
-	delete gauss;
 }
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* event)
