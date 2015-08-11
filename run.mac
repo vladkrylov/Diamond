@@ -1,4 +1,6 @@
-# set messenger parameters
+/diamond/source/lambda 1
+/run/initialize
+
 /run/verbose 1
 /event/verbose 0
 /tracking/verbose 0

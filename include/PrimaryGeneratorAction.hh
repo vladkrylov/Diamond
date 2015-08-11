@@ -6,6 +6,7 @@
 #include "globals.hh"
 #include "G4VUserPrimaryGeneratorAction.hh"
 
+class PrimaryGeneratorMessenger;
 class G4Event;
 class G4ParticleGun;
 class G4ParticleDefinition;
@@ -20,10 +21,13 @@ public:
 
 	virtual void GeneratePrimaries(G4Event*);
 
+	void SetLambda(double lambda);
+
 private:
 	double Emean;
 	double sigma;
 
+	PrimaryGeneratorMessenger* gunMessenger;
 	G4ParticleGun* fParticleGun;
 	std::default_random_engine generator;
 	std::poisson_distribution<int>* poisson;

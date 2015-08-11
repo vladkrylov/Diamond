@@ -36,10 +36,6 @@ int main(int argc, char** argv)
 	// User action initialization
 	runManager->SetUserInitialization(new ActionInitialization);
 
-	// Initialize G4 kernel
-	//
-	runManager->Initialize();
-
 	#ifdef G4VIS_USE
 		// Initialize visualization
 		G4VisManager* visManager = new G4VisExecutive;

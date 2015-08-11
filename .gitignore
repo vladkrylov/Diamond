@@ -4,7 +4,6 @@
 
 nohup*
 
-*.root
 *.zip
 *.heprep
 *.properties

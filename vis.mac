@@ -31,4 +31,8 @@
 #/gun/particle e-
 #/gun/energy 4438 keV
 
+/run/initialize
+
+/diamond/source/lambda 10
+
 /run/beamOn 50

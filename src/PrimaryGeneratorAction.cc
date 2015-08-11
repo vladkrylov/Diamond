@@ -8,15 +8,19 @@
 #include "TTree.h"
 
 #include "PrimaryGeneratorAction.hh"
+#include "PrimaryGeneratorMessenger.hh"
 
 PrimaryGeneratorAction::PrimaryGeneratorAction()
 : G4VUserPrimaryGeneratorAction()
 , fParticleGun(0)
+, poisson(0)
 {
+	gunMessenger = new PrimaryGeneratorMessenger(this);
+
 	poisson = new std::poisson_distribution<int>(4.3);
 
 	// open ROOT file for reading source parameters
-	f = new TFile("/home/vlad/10g4work/LeetechRuns/DiamondSource100um/Result.root");
+	f = new TFile("Result.root");
 	t1 = (TTree*)f->Get("T");
 	t1->SetBranchAddress("Energy", &kinEnergy);
 	t1->SetBranchAddress("PX", &Px);
@@ -37,6 +41,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
 
 PrimaryGeneratorAction::~PrimaryGeneratorAction()
 {
+	delete gunMessenger;
 	delete fParticleGun;
 	delete poisson;
 }
@@ -60,4 +65,10 @@ G4ParticleDefinition* PrimaryGeneratorAction::FindParticle(G4String particleName
 	G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
 	G4ParticleDefinition* particle = particleTable->FindParticle(particleName);
 	return particle;
+}
+
+void PrimaryGeneratorAction::SetLambda(double lambda)
+{
+	if (poisson) delete poisson;
+	poisson = new std::poisson_distribution<int>(lambda);
 }
