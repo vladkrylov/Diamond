@@ -23,13 +23,24 @@ function test_poisson
     end
     figure(1)
     stairs(x, y)
+<<<<<<< HEAD
     
+=======
+<<<<<<< Updated upstream
+=======
+    
+%     x_centers = 1000;
+>>>>>>> develop
     x_centers = 18.7 * [-0.01:1e-4:0.35];
     
     hold on
         legendInfo = sim_plot(4.2, 1e4, x_centers, 10, 'r', legendInfo);
         legendInfo = sim_plot(2.9, 1e4, x_centers, 10, 'g', legendInfo);
     hold off
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> develop
     legend(legendInfo)
     xlabel('Amplitude, V')
     ylabel('Counts')

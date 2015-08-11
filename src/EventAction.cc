@@ -35,10 +35,6 @@ void EventAction::EndOfEventAction(const G4Event* event)
     // get analysis manager
     G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 
-    // fill histograms
-    //
-    //analysisManager->FillH1(1, Edep);
-
     // fill ntuple
     //
     analysisManager->FillNtupleDColumn(0, Edep);

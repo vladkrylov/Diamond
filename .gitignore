@@ -12,3 +12,8 @@ nohup*
 
 *.pyc
 
+*.out
+
+Debug/
+Release/
+oprofile_data/

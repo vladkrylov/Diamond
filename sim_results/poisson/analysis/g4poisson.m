@@ -16,6 +16,10 @@ function [x, y] = g4poisson(lambda, n_events, n_bins)
     data(counter:end) = g4load(0, n_events - counter + 1);
     
     [y, x] = hist(data, n_bins);
+<<<<<<< HEAD
+=======
+    x = MeV2Volts(x);
+>>>>>>> develop
 end
 
 function deposit_energies = g4load(n_electrons, n_events)

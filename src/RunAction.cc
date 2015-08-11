@@ -37,10 +37,10 @@ void RunAction::BeginOfRunAction(const G4Run* run)
 		//time_t systime = time(NULL);
 		seeds[0] = (long) systime;
 		seeds[1] = (long) (systime*G4UniformRand());
-		CLHEP::HepRandom::setTheSeeds(seeds);
-		CLHEP::HepRandom::showEngineStatus();
+		G4Random::setTheSeeds(seeds);
+		G4Random::showEngineStatus();
 	} else {
-		CLHEP::HepRandom::showEngineStatus();
+		G4Random::showEngineStatus();
 	}
 
 	//inform the runManager to save random number seed
@@ -50,7 +50,7 @@ void RunAction::BeginOfRunAction(const G4Run* run)
     G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 
     // Open an output file
-     analysisManager->OpenFile("test.csv");
+     analysisManager->OpenFile("results.csv");
 }
 
 void RunAction::EndOfRunAction(const G4Run* run)
