@@ -15,8 +15,10 @@ out_dir = os.path.join(current_path, '../lambda_scan')
 shutil.rmtree(out_dir, ignore_errors=True)
 os.mkdir(out_dir)
 
+change_parameter('/run/beamOn', int(1e6))
 for poisson_lambda in drange(3, 7.5, 0.5):
     change_parameter('/diamond/source/lambda', str(poisson_lambda))
+     
     call(['../bin/Linux-g++/diamond', 'run.mac'])
     shutil.copy('results_nt_DD.csv', os.path.join(out_dir, "lambda=%s.csv" % str(poisson_lambda)))
     

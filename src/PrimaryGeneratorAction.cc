@@ -2,6 +2,7 @@
 #include "G4ParticleGun.hh"
 #include "G4ParticleDefinition.hh"
 #include "G4ParticleTable.hh"
+#include "G4Poisson.hh"
 #include "Randomize.hh"
 
 #include "TFile.h"
@@ -13,11 +14,9 @@
 PrimaryGeneratorAction::PrimaryGeneratorAction()
 : G4VUserPrimaryGeneratorAction()
 , fParticleGun(0)
-, poisson(0)
+, lambda(1.)
 {
 	gunMessenger = new PrimaryGeneratorMessenger(this);
-
-	poisson = new std::poisson_distribution<int>(4.3);
 
 	// open ROOT file for reading source parameters
 	f = new TFile("Result.root");
@@ -43,12 +42,11 @@ PrimaryGeneratorAction::~PrimaryGeneratorAction()
 {
 	delete gunMessenger;
 	delete fParticleGun;
-	delete poisson;
 }
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* event)
 {
-	int N = (*poisson)(generator);
+	int N = G4Poisson(lambda);
 	int eventId;
 	for (int i = 0; i < N; ++i) {
 		eventId = (int) (t1->GetEntries()*G4UniformRand());
@@ -67,8 +65,7 @@ G4ParticleDefinition* PrimaryGeneratorAction::FindParticle(G4String particleName
 	return particle;
 }
 
-void PrimaryGeneratorAction::SetLambda(double lambda)
+void PrimaryGeneratorAction::SetLambda(double val)
 {
-	if (poisson) delete poisson;
-	poisson = new std::poisson_distribution<int>(lambda);
+	lambda = val;
 }

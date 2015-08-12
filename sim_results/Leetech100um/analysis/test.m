@@ -8,7 +8,7 @@ function test
 %     [y2, x2] = hist(d2, N_bins);
 %     stairs(x2(2:end), y2(2:end), 'r')
 
-    dm = load('../many3.csv');
+    dm = load('../many2.csv');
     [y2, x2] = hist(dm, N_bins);
     stairs(x2(2:end), y2(2:end), 'r')
     

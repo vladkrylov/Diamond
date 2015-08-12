@@ -4,6 +4,6 @@
 
 /run/initialize
 
-/diamond/source/lambda 7.0
+/diamond/source/lambda 4.3
 
-/run/beamOn 10
+/run/beamOn 100000

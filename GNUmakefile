@@ -16,8 +16,6 @@ EXTRALIBS = $(shell root-config --glibs)
 CPPFLAGS += -I$(shell root-config --incdir)
 LDLIBS   += $(shell root-config --libs)
 
-CPPFLAGS += -std=c++11
-
 visclean:
 	rm -f g4*.prim g4*.eps g4*.wrl
 	rm -f .DAWN_*

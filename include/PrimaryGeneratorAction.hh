@@ -1,8 +1,6 @@
 #ifndef PRIMARYGENERATORACTION_HH_
 #define PRIMARYGENERATORACTION_HH_
 
-#include <random>
-
 #include "globals.hh"
 #include "G4VUserPrimaryGeneratorAction.hh"
 
@@ -26,11 +24,10 @@ public:
 private:
 	double Emean;
 	double sigma;
+	double lambda;
 
 	PrimaryGeneratorMessenger* gunMessenger;
 	G4ParticleGun* fParticleGun;
-	std::default_random_engine generator;
-	std::poisson_distribution<int>* poisson;
 
 	G4ParticleDefinition* FindParticle(G4String particleName);
 
