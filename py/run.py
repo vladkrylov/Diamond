@@ -15,7 +15,7 @@ out_dir = os.path.join(current_path, '../lambda_scan')
 shutil.rmtree(out_dir, ignore_errors=True)
 os.mkdir(out_dir)
 
-change_parameter('/run/beamOn', int(1e6))
+change_parameter('/run/beamOn', int(1e2))
 for poisson_lambda in drange(3, 7.5, 0.5):
     change_parameter('/diamond/source/lambda', str(poisson_lambda))
      

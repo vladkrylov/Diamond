@@ -30,6 +30,7 @@ private:
 	G4ParticleGun* fParticleGun;
 
 	G4ParticleDefinition* FindParticle(G4String particleName);
+	bool ToDetector(double x, double y, double z);
 
 	double kinEnergy;
 	double Px, Py, Pz;

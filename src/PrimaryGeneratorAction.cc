@@ -1,3 +1,5 @@
+#include <cmath>
+
 #include "G4SystemOfUnits.hh"
 #include "G4ParticleGun.hh"
 #include "G4ParticleDefinition.hh"
@@ -47,14 +49,23 @@ PrimaryGeneratorAction::~PrimaryGeneratorAction()
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* event)
 {
 	int N = G4Poisson(lambda);
+	int nEntries = t1->GetEntries();
 	int eventId;
+	double x, y, z; // position of primary vertex
+
 	for (int i = 0; i < N; ++i) {
-		eventId = (int) (t1->GetEntries()*G4UniformRand());
+		eventId = (int) (nEntries*G4UniformRand());
 		t1->GetEntry(eventId);
-		fParticleGun->SetParticleEnergy(kinEnergy*MeV);
-		fParticleGun->SetParticlePosition(G4ThreeVector(x0*mm - 20.3*cm, y0*mm, z0));
-		fParticleGun->SetParticleMomentumDirection(G4ThreeVector(Px, Py, Pz));
-		fParticleGun->GeneratePrimaryVertex(event);
+		x = x0*mm - 20.3*cm;
+		y = y0*mm;
+		z = z0;
+
+		if (ToDetector(x, y, z)) {
+			fParticleGun->SetParticleEnergy(kinEnergy*MeV);
+			fParticleGun->SetParticlePosition(G4ThreeVector(x, y, z));
+			fParticleGun->SetParticleMomentumDirection(G4ThreeVector(Px, Py, Pz));
+			fParticleGun->GeneratePrimaryVertex(event);
+		} else continue;
 	}
 }
 
@@ -68,4 +79,33 @@ G4ParticleDefinition* PrimaryGeneratorAction::FindParticle(G4String particleName
 void PrimaryGeneratorAction::SetLambda(double val)
 {
 	lambda = val;
+}
+
+bool PrimaryGeneratorAction::ToDetector(double x, double y, double z)
+{
+	// diamond parameters
+	// TODO get them from DetectorConstruction
+	G4ThreeVector ddCenter(0, 0, 0);
+	double thickness = 500*um;
+	double width = 4*mm;
+	double height = 4*mm;
+
+	double z_target = ddCenter.z() + thickness/2;
+	// distance OZ from source to face of diamond
+	double dz = z - z_target;
+
+	// translation of particle
+	G4ThreeVector translation(Px, Py, Pz);
+	translation = translation / translation.z() * dz;
+
+	double x_target = x - translation.x();
+	double y_target = y - translation.y();
+
+	if ((fabs(x_target) <= width/2)
+	 && (fabs(y_target) <= height/2)) {
+		G4cout << x << "    " << y << "    " << z << "    " << G4endl;
+		G4cout << x_target << "    " << y_target << "    " << z_target << "    " << G4endl;
+		G4cout << "============================================================" << G4endl;
+		return true;
+	} else return false;
 }

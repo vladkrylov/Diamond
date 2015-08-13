@@ -31,7 +31,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 	G4Material* DD_mat = new G4Material(name="diamond",z=6.,a,density);
 
 	G4NistManager* man = G4NistManager::Instance();
-	G4Material* Air = man->FindOrBuildMaterial("G4_AIR");
+	G4Material* Air = man->FindOrBuildMaterial("G4_Galactic");
 
 	//
 	// World

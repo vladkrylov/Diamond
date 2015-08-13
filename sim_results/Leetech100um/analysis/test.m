@@ -8,7 +8,8 @@ function test
 %     [y2, x2] = hist(d2, N_bins);
 %     stairs(x2(2:end), y2(2:end), 'r')
 
-    dm = load('../many2.csv');
+    dm = dlmread('../lambda_scan/lambda=9.5.csv', '', 4);
+%     dm = dlmread('../../../results_nt_DD.csv', '', 4);
     [y2, x2] = hist(dm, N_bins);
     stairs(x2(2:end), y2(2:end), 'r')
     
