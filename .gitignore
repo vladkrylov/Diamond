@@ -3,6 +3,7 @@
 !.gitignore
 
 nohup*
+results_nt_DD.csv
 
 *.zip
 *.heprep

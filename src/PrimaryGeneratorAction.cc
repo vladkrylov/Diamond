@@ -103,9 +103,6 @@ bool PrimaryGeneratorAction::ToDetector(double x, double y, double z)
 
 	if ((fabs(x_target) <= width/2)
 	 && (fabs(y_target) <= height/2)) {
-		G4cout << x << "    " << y << "    " << z << "    " << G4endl;
-		G4cout << x_target << "    " << y_target << "    " << z_target << "    " << G4endl;
-		G4cout << "============================================================" << G4endl;
 		return true;
 	} else return false;
 }
